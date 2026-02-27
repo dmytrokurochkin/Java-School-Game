@@ -4,7 +4,7 @@ import pierwszaGrupa.wojownicy.Wojownik;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class фMain {
+public class Main {
     public static void main(String[] args) {
         ArrayList<Wojownik> wojownicy = new ArrayList<>();
         wojownicy.add(
