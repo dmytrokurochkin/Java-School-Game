@@ -1,3 +1,6 @@
+package drugaGrupa.Okna;
+import drugaGrupa.wojownicy.Wojownik;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -16,23 +19,19 @@ public class MyPanel extends JPanel {
                 //wasd - 87 65 83 68
                 if (e.getKeyCode() == KeyEvent.VK_W) {
                     wojownicy.get(0).setY(wojownicy.get(0).getY() - 10);
-                    System.out.println(wojownicy.get(0).getY());
                     repaint();
-                    //System.out.println("w");
+                    //paintComponent(getGraphics());
                 } else if (e.getKeyCode() == KeyEvent.VK_A) {
                     wojownicy.get(0).setX(wojownicy.get(0).getX() - 10);
-                    repaint();
-                    //System.out.println("a");
+                    paintComponent(getGraphics());
                 } else if (e.getKeyCode() == KeyEvent.VK_S) {
                     wojownicy.get(0).setY(wojownicy.get(0).getY() + 10);
-                    repaint();
-                    //System.out.println("s");
+                    paintComponent(getGraphics());
                 } else if (e.getKeyCode() == KeyEvent.VK_D) {
                     wojownicy.get(0).setX(wojownicy.get(0).getX() + 10);
-                    repaint();
-                    //System.out.println("d");
+                    paintComponent(getGraphics());
                 }
-                System.out.println(e.getKeyCode() + " key pressed");
+                //System.out.println(e.getKeyCode() + " key pressed");
             }
         });
     }

@@ -1,8 +1,12 @@
+package drugaGrupa;
+
+import drugaGrupa.Okna.MojeOkno;
+import drugaGrupa.wojownicy.Wojownik;
+
 import java.util.ArrayList;
 
-public class Okna {
+public class Main {
     public static void main(String[] args) {
-        int windowWidth = 600, windowHeight = 600;
         ArrayList<Wojownik> wojownicy = new ArrayList<>();
         Wojownik woj1 = new Wojownik(10, 10, 100, 20);
         Wojownik woj2 = new Wojownik(100, 100, 100, 20);
