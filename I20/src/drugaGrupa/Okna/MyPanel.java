@@ -19,17 +19,20 @@ public class MyPanel extends JPanel {
                 //wasd - 87 65 83 68
                 if (e.getKeyCode() == KeyEvent.VK_W) {
                     wojownicy.get(0).setY(wojownicy.get(0).getY() - 10);
-                    repaint();
-                    //paintComponent(getGraphics());
-                } else if (e.getKeyCode() == KeyEvent.VK_A) {
-                    wojownicy.get(0).setX(wojownicy.get(0).getX() - 10);
                     paintComponent(getGraphics());
+                } else if (e.getKeyCode() == KeyEvent.VK_A) {
+                    if (wojownicy.get(1).getX() + 50 != wojownicy.get(0).getX()) {
+                        wojownicy.get(0).setX(wojownicy.get(0).getX() - 10);
+                        paintComponent(getGraphics());
+                    }
                 } else if (e.getKeyCode() == KeyEvent.VK_S) {
                     wojownicy.get(0).setY(wojownicy.get(0).getY() + 10);
                     paintComponent(getGraphics());
                 } else if (e.getKeyCode() == KeyEvent.VK_D) {
-                    wojownicy.get(0).setX(wojownicy.get(0).getX() + 10);
-                    paintComponent(getGraphics());
+                    if (wojownicy.get(1).getX() != wojownicy.get(0).getX() + 50 && wojownicy.get(1).getY() == wojownicy.get(0).getY()) {
+                        wojownicy.get(0).setX(wojownicy.get(0).getX() + 10);
+                        paintComponent(getGraphics());
+                    }
                 }
                 //System.out.println(e.getKeyCode() + " key pressed");
             }
