@@ -37,7 +37,9 @@ public class Wojownik {
     }
 
     public void setY(int y) {
-        this.y = y;
+        this.y = y % MojeOkno.getWindowWidth();
+        if(this.y < 0)
+            this.y = MojeOkno.getWindowWidth() + this.y;
     }
 
     public void setHp(int hp) {
