@@ -9,45 +9,60 @@ import java.util.ArrayList;
 
 public class MyPanel extends JPanel {
     ArrayList<Wojownik> wojownicy;
+
     public MyPanel(ArrayList<Wojownik> wojownicy) {
         this.wojownicy = wojownicy;
         setFocusable(true);
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                //wasd - 87 65 83 68
+                Wojownik gracz = wojownicy.get(0);
+
                 if (e.getKeyCode() == KeyEvent.VK_W) {
-                    wojownicy.get(0).setY(wojownicy.get(0).getY() - 10);
-                    repaint();
-                    //paintComponent(getGraphics());
+                    gracz.setY(gracz.getY() - 10);
                 } else if (e.getKeyCode() == KeyEvent.VK_A) {
-                    wojownicy.get(0).setX(wojownicy.get(0).getX() - 10);
-                    paintComponent(getGraphics());
+                    gracz.setX(gracz.getX() - 10);
                 } else if (e.getKeyCode() == KeyEvent.VK_S) {
-                    wojownicy.get(0).setY(wojownicy.get(0).getY() + 10);
-                    paintComponent(getGraphics());
+                    gracz.setY(gracz.getY() + 10);
                 } else if (e.getKeyCode() == KeyEvent.VK_D) {
-                    wojownicy.get(0).setX(wojownicy.get(0).getX() + 10);
-                    paintComponent(getGraphics());
+                    gracz.setX(gracz.getX() + 10);
                 }
-                //System.out.println(e.getKeyCode() + " key pressed");
+
+                // Kolizja
+                for (int i = 1; i < wojownicy.size(); i++) {
+                    if (koliduje(gracz, wojownicy.get(i))) {
+                        // Cofnij ruch
+                        if (e.getKeyCode() == KeyEvent.VK_W) {
+                            gracz.setY(gracz.getY() + 10);
+                        } else if (e.getKeyCode() == KeyEvent.VK_A) {
+                            gracz.setX(gracz.getX() + 10);
+                        } else if (e.getKeyCode() == KeyEvent.VK_S) {
+                            gracz.setY(gracz.getY() - 10);
+                        } else if (e.getKeyCode() == KeyEvent.VK_D) {
+                            gracz.setX(gracz.getX() - 10);
+                        }
+                        break;
+                    }
+                }
+
+                repaint();
             }
         });
+    }
+
+    private boolean koliduje(Wojownik a, Wojownik b) {
+        return a.getX() < b.getX() + 50 &&
+                a.getX() + 50 > b.getX() &&
+                a.getY() < b.getY() + 50 &&
+                a.getY() + 50 > b.getY();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        /*g.drawString("Hello World", 100, 100);
-        g.drawRect(100, 100, 200, 200);
-        Image image = new ImageIcon("aaaaaa.png").getImage();
-        g.drawImage(image, 100, 100, null);
-        */
         for (Wojownik w : wojownicy) {
             g.drawString("hp: " + w.getHp(), w.getX(), w.getY());
             g.drawImage(w.getImg(), w.getX(), w.getY(), 50, 50, null);
         }
     }
-
 }
